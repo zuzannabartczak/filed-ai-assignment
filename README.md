@@ -1,6 +1,18 @@
 # AI Assignment (intern)
 
-A FastAPI-based service for classifying uploaded document
+Hi there 👋,
+
+This is the take home assignment for Filed's AI intern position. 
+We recommend spending no more than 5–6 hours on it — we're not looking for perfection, but rather how you think and approach problems.
+
+You can clone this repository into your github account and then complete it.
+
+There is no set time to complete the assignment, but faster you complete higher the chances that the position is not filled by someone else. 
+
+Once you're done, just reply back to the email you received with the link to your completed github repo and we'll get back to you shortly after.
+
+PS: If its a private repo - please add atul@filed.com as the outside collaborator
+
 
 ## Prerequisites
 
