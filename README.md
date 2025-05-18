@@ -1,4 +1,4 @@
-# Super Doc
+# AI Assignment (intern)
 
 A FastAPI-based service for classifying uploaded document
 
@@ -43,7 +43,7 @@ http://0.0.0.0:8000/docs
 Your task is to complete the /classify endpoint
 The endpoint should 
 
-1. Take in a pdf file as an input - Use the sample documents provided under sample directory
+1. Take in a PDF file as an input - Use the sample documents provided under sample directory
 2. Classify the PDF as one of 
 
 - "1040"
