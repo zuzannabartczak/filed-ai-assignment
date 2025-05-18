@@ -9,10 +9,13 @@ A FastAPI-based service for classifying uploaded document
 
 ## Setup
 
-1. Install uv (if not already installed):
+
+0. Install uv (if not already installed):
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+1. Clone this repo
 
 2. Install dependencies using uv:
 ```bash
