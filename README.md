@@ -1,8 +1,8 @@
-# AI Assignment (intern)
+# AI Assignment
 
 Hi there 👋,
 
-This is the take home assignment for Filed's AI intern position. 
+This is the take home assignment for Filed's AI engineer position. 
 We recommend spending no more than 5–6 hours on it — we're not looking for perfection, but rather how you think and approach problems.
 
 You can clone this repository into your github account and then complete it.
