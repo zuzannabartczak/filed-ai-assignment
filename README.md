@@ -65,6 +65,7 @@ The endpoint should
 - "W2"
 - "1099
 - "ID Card"
+- "Handwritten note"
 - "OTHER"
 
 3. Also parse the year the document was issued
