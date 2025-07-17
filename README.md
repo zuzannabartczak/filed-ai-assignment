@@ -9,8 +9,6 @@ Accepts a PDF file upload and returns a JSON response containing:
 * **`document_type`**: One of the supported document types — `"1040"`, `"W2"`, `"1099"`, `"1098"`, `"ID Card"`, `"Handwritten note"`, or `"OTHER"`.
 * **`year`**: The year the document was issued or pertains to, if detectable.
 
----
-
 ## Core Functionality
 
 The classification and year extraction pipeline operates as follows:
@@ -35,8 +33,6 @@ The classification and year extraction pipeline operates as follows:
 * Excludes **revision** or **form version** years based on contextual keywords.
 * For forms referencing a calendar year with interactive fields, reconstructs the full year from two-digit fields with validation.
 
----
-
 ## Technology Stack
 
 * **FastAPI** – API framework serving the classification endpoint.
@@ -45,15 +41,11 @@ The classification and year extraction pipeline operates as follows:
 * **pytesseract** – Performs OCR on scanned PDF pages as a fallback.
 * **Pillow (PIL)** – Image processing for OCR enhancement.
 
----
-
 ## Running the Service
 
 * The application is served via **Uvicorn**.
 * It accepts **multipart form uploads** of PDF files at `/classify`.
 * Responses are **JSON-formatted** with classification results.
-
----
 
 ## Extensibility
 
