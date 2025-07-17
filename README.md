@@ -1,71 +1,63 @@
-# AI Assignment
+## Overview
 
-Hi there 👋,
+The service exposes a single endpoint:
 
-This is the take home assignment for Filed's AI engineer position. 
-We recommend spending no more than 5–6 hours on it — we're not looking for perfection, but rather how you think and approach problems.
+### `POST /classify`
 
-You can clone this repository into your github account and then complete it.
+Accepts a PDF file upload and returns a JSON response containing:
 
-There is no set time to complete the assignment, but faster you complete higher the chances that the position is not filled by someone else. 
+* **`document_type`**: One of the supported document types — `"1040"`, `"W2"`, `"1099"`, `"1098"`, `"ID Card"`, `"Handwritten note"`, or `"OTHER"`.
+* **`year`**: The year the document was issued or pertains to, if detectable.
 
-Once you're done, just reply back to the email you received with the link to your completed github repo and we'll get back to you shortly after.
+---
 
-PS: If its a private repo - please add atul@filed.com as the outside collaborator
+## Core Functionality
 
+The classification and year extraction pipeline operates as follows:
 
-## Prerequisites
+### PDF Content Extraction
 
-- Python 3.13 or higher
-- [uv](https://github.com/astral-sh/uv) package manager
+* Extracts text from multiple sources within the PDF:
 
-## Setup
-
-
-0. Install uv (if not already installed):
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-1. Clone this repo
-
-2. Install dependencies using uv:
-```bash
-uv sync
-```
-
-3. Run:
-```bash
-uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-4. You can now open the docs at http://0.0.0.0:8000/docs and run the endpoints
-
-## API Endpoints
-
-### Docs
-
-http://0.0.0.0:8000/docs
-
+  * Interactive form fields
+  * Extracted tables
+  * Full page text content
+* Falls back to **OCR-based text extraction** if no usable text is found.
 
 ### Document Classification
-- `POST /classify` - Submit a document to be classified
 
+* Uses rule-based keyword matching on the combined extracted text to classify the document type.
 
-## Task 
+### Year Extraction
 
+* Identifies candidate years within the extracted text.
+* Prioritizes years found on lines containing document-identifying keywords.
+* Excludes **revision** or **form version** years based on contextual keywords.
+* For forms referencing a calendar year with interactive fields, reconstructs the full year from two-digit fields with validation.
 
-Your task is to complete the /classify endpoint
-The endpoint should 
+---
 
-1. Take in a PDF file as an input - Use the sample documents provided under sample directory
-2. Classify the PDF as one of 
+## Technology Stack
 
-- "1040"
-- "W2"
-- "1099
-- "ID Card"
-- "Handwritten note"
-- "OTHER"
+* **FastAPI** – API framework serving the classification endpoint.
+* **pdfplumber** – Extracts text and tables from PDFs.
+* **pypdf** – Accesses interactive form fields in PDFs.
+* **pytesseract** – Performs OCR on scanned PDF pages as a fallback.
+* **Pillow (PIL)** – Image processing for OCR enhancement.
 
-3. Also parse the year the document was issued
+---
+
+## Running the Service
+
+* The application is served via **Uvicorn**.
+* It accepts **multipart form uploads** of PDF files at `/classify`.
+* Responses are **JSON-formatted** with classification results.
+
+---
+
+## Extensibility
+
+* The rule-based classifier is designed to be easily extended with additional document types by updating keyword lists.
+* The year extraction logic can be adapted to handle more complex date patterns or validation rules as needed.
+
+---
